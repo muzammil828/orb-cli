@@ -1,0 +1,11 @@
+---
+description: Preserve existing and previously generated project or deployment artifacts unless the user explicitly requests removal.
+alwaysApply: true
+---
+
+# Preserve Existing Artifacts
+
+- Do not delete files, directories, generated deployment artifacts, or existing code as automatic cleanup.
+- Do not add cleanup logic that removes artifacts from earlier runs just because the current implementation no longer needs them.
+- If an artifact needs to be replaced, update it in place when appropriate and leave unrelated or obsolete artifacts untouched.
+- Remove an artifact only when the user explicitly asks for its removal.

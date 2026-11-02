@@ -1,0 +1,20 @@
+services:
+  postgresql:
+    image: docker.io/soldevelo/postgresql-repmgr:17.6.0-debian-12-r0
+    container_name: orb-postgresql
+    network_mode: host
+    restart: unless-stopped
+    environment:
+      POSTGRESQL_POSTGRES_PASSWORD: {{quote (index . "PostgreSQLPassword")}}
+      POSTGRESQL_USERNAME: {{quote (index . "PostgreSQLUsername")}}
+      POSTGRESQL_PASSWORD: {{quote (index . "PostgreSQLPassword")}}
+      POSTGRESQL_DATABASE: "orb"
+      REPMGR_PASSWORD: {{quote (index . "RepmgrPassword")}}
+      REPMGR_PRIMARY_HOST: {{quote (index . "PrimaryHost")}}
+      REPMGR_PRIMARY_PORT: "5432"
+      REPMGR_PARTNER_NODES: {{quote (index . "PartnerNodes")}}
+      REPMGR_NODE_NAME: {{quote (index . "NodeName")}}
+      REPMGR_NODE_NETWORK_NAME: {{quote (index . "NetworkHost")}}
+      REPMGR_PORT_NUMBER: "5432"
+    volumes:
+      - /var/pgsql:/bitnami/postgresql
